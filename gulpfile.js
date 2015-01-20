@@ -11,7 +11,7 @@ gulp.task('connect', function () {
 });
 
 gulp.task('watch', function () {
-  watch('chapter*/**/*')
+  watch('app/chapter*/**/*')
     .pipe(connect.reload());
 });
 
