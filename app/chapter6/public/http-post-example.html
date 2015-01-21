@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="notesApp">
+<head>
+    <meta charset="UTF-8">
+    <title>$http-post-example</title>
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+        .item {padding: 10px;}
+    </style>
+</head>
+<body ng-controller="MainCtrl as mainCtrl">
+    <h1>Hello Servers!</h1>
+
+    <div>
+        <form name="addForm" ng-submit="mainCtrl.add()">
+            <input type="text" placeholder="Label" ng-model="mainCtrl.newTodo.label" required>
+            <input type="text" placeholder="Author" ng-model="mainCtrl.newTodo.author" required>
+            <input type="submit" value="Add" ng-disabled="addForm.$invalid">
+        </form>
+    </div>
+
+    <div class="item" ng-repeat="todo in mainCtrl.items" ng-cloak>
+        <div><span ng-bind="todo.label"></span></div>
+        <div>- by <span ng-bind="todo.author"></span></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+    <script>
+    angular.module('notesApp', [])
+        .controller('MainCtrl', ['$http', function ($http) {
+          var _this = this;
+
+          _this.items = [];
+          _this.newTodo = {};
+
+          var fetchTodos = function () {
+            return $http.get('/api/note')
+                .then(function (response) {
+                    _this.items = response.data;
+                }, function () {
+                  console.error('Error while fetching notes.');
+                });
+          };
+
+          fetchTodos();
+
+          _this.add = function () {
+            $http.post('/api/note', _this.newTodo)
+                .then(fetchTodos)
+                .then(function (response) {
+                  _this.newTodo = {};
+                });
+          };
+        }]);
+    </script>
+</body>
+</html>
