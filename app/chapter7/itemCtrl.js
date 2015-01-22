@@ -1,7 +1,8 @@
 (function (angular) {
   'use strict';
 
-  var ItemService = function () {
+  angular.module('notesApp1', [])
+    .factory('ItemService', [function () {
       var items = [
         {
           id: 1,
@@ -10,8 +11,8 @@
         {
           id: 2,
           label: 'Item 1'
-      },
-    ];
+      }
+     ];
 
       return {
         list: function () {
@@ -21,14 +22,10 @@
           items.push(item);
         }
       };
-    },
-    ItemCtrl = function (ItemService) {
+   }])
+    .controller('ItemCtrl', ['ItemService', function (ItemService) {
       var _this = this;
 
       _this.items = ItemService.list();
-    };
-
-  angular.module('notesApp', [])
-    .factory('ItemService', [ItemService])
-    .controller('ItemCtrl', ['ItemService', ItemCtrl]);
+   }]);
 })(angular);
