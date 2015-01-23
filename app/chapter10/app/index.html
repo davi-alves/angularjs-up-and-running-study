@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FIFA Teams</title>
+    <style rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css"></style>
+    <style rel="stylesheet" href="styles/main.css"></style>
+</head>
+<body class="loading" ng-app="fifaApp">
+
+    <div class="top-bar" ng-controller="MainCtrl as mainCtrl">
+        <div class="pull-left">
+            <span><a href="#/">FIFA TEAMS</a></span>
+        </div>
+        <div class="pull-right">
+            <span ng-hide="mainCtrl.userService.isLoggedIn">
+                <a href="#/login">Login</a>
+            </span>
+            <!-- server side route -->
+            <span ng-show="mainCtrl.userService.isLoggedIn">
+                <a href="/api/logout">Logout</a>
+            </span>
+        </div>
+    </div>
+
+    <div ng-view></div>
+
+    <!-- scripts -->
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services.js"></script>
+    <script src="scripts/controllers.js"></script>
+
+</body>
+</html>
