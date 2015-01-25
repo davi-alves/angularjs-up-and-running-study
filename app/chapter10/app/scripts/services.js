@@ -12,6 +12,7 @@
         }
       };
     },
+
     UserService = function ($http) {
       var service = {
         isLoggedIn: false,
