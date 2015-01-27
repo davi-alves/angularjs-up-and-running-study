@@ -1,0 +1,16 @@
+{
+  "name": "chapter12",
+  "version": "1.0.0",
+  "description": "",
+  "main": "karma.conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.3",
+    "gulp-ng-html2js": "^0.1.8"
+  }
+}
