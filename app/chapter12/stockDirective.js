@@ -29,5 +29,5 @@
   };
 
   angular.module('stockMarketApp', [])
-    .directive('stockWidegt', [StockWidget]);
+    .directive('stockWidget', [StockWidget]);
 })(angular);
