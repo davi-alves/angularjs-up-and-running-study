@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic form APP</title>
+</head>
+<body ng-app="dynamicFormApp">
+    <div ng-controller="MainCtrl as mainCtrl">
+        <form name="mainForm" novalidate>
+            <form-element
+                    type="text"
+                    name="uname"
+                    bind-to="mainCtrl.username"
+                    label="Username"
+                    ng-minlength="5"
+                    required>
+                <validation key="required">Please enter a username</validation>
+                <validation key="minlength">Username must be at least 5 characters</validation>
+            </form-element>
+            <p>
+                Username is {{mainCtrl.username}}
+            </p>
+
+            <form-element
+                    type="password"
+                    name="pwd"
+                    bind-to="mainCtrl.password"
+                    label="Password"
+                    ng-pattern="/^[a-zA-Z0-9]+$/"
+                    required>
+                <validation key="required">Please enter a password</validation>
+                <validation key="pattern">Password must be alphanumeric characters</validation>
+            </form-element>
+            <p>
+                Password is {{mainCtrl.password}}
+            </p>
+
+        </form>
+    </div>
+    <script src="http://code.angularjs.org/1.2.16/angular.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
